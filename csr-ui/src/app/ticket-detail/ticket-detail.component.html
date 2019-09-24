@@ -1,0 +1,19 @@
+<h2 class="detail">Ticket Details</h2>
+
+<div class="ticket">
+
+<h3>Ticket Query</h3><h5>.........................</h5>
+<h3>User Mail</h3><h5>.........................</h5>
+<h3>status</h3><h5>.........................</h5>
+
+<button class="button" mat-stroked-button (click)="openDialogforReport()" >Report a User</button>
+<button class="button" mat-stroked-button>Call Back Email</button>
+<button class="button" mat-stroked-button (click)="openSnackBar('ticket resolved!!','Dismiss')">Ticket Resolved</button>
+
+<form class="example-form">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="enter command">
+        </mat-form-field>
+</form>
+<button mat-raised-button (click)="openDialogforResponse()">Submit</button>
+</div>
