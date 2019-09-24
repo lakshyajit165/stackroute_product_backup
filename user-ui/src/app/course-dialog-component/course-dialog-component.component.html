@@ -1,0 +1,16 @@
+<h2 mat-dailog-title>
+    Complaint Form
+    <mat-icon mat-dialog-close >clear</mat-icon>
+</h2>
+    <div class="display">
+    <div mat-form-field >
+                    <mat-label>Enter Description</mat-label>
+                    <textarea matInput [(ngModel)]="data.description"
+                              cdkTextareaAutosize
+                              #autosize="cdkTextareaAutosize"
+                              ></textarea>
+    </div>
+    </div>
+    <div mat-dailog-actions>
+        <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Submit</button>
+    </div>
