@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface TicketRepository extends MongoRepository<Ticket, String> {
 
-    @Query("{ 'status': 'open'}")
+    @Query("{ 'status': 'open', 'type': 'query'}")
     public List<Ticket> getOpenTickets();
 }

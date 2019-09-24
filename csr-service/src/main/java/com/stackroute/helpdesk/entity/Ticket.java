@@ -19,12 +19,11 @@ import java.util.List;
 @NoArgsConstructor
 public class Ticket {
 
-//    @NotBlank
+    //    @NotBlank
 //    @Size(max=100)
 //    @Indexed(unique=true)
     private String description;
     private String usermail;
-    private String csrmail;
     private String status;
     private int rating;
     private Date time_created;
@@ -34,10 +33,9 @@ public class Ticket {
     private String solved_by;
     private List<String> tags;
 
-    public Ticket(@NotBlank @Size(max = 100) String description, String usermail, String csrmail, String status, int rating, Date time_created, Date time_resolved, List<String> commands_used, String type, String solved_by, List<String> tags) {
+    public Ticket(@NotBlank @Size(max = 100) String description, String usermail, String status, int rating, Date time_created, Date time_resolved, List<String> commands_used, String type, String solved_by, List<String> tags) {
         this.description = description;
         this.usermail = usermail;
-        this.csrmail = csrmail;
         this.status = status;
         this.rating = rating;
         this.time_created = time_created;
@@ -53,7 +51,6 @@ public class Ticket {
         return "Ticket: " +
                 "description='" + description + '\'' +
                 ", usermail='" + usermail + '\'' +
-                ", csrmail='" + csrmail + '\'' +
                 ", status='" + status + '\'' +
                 ", rating=" + rating +
                 ", time_created=" + time_created +

@@ -1,0 +1,36 @@
+<!-- <app-speed-dial-fab></app-speed-dial-fab> -->
+<!-- <app-chat-window></app-chat-window> -->
+<html>
+    <body>
+        <div class="chat">
+            <header class="chat-window">
+        <mat-toolbar color="primary">
+        <mat-toolbar-row>
+            <span>Live Chat</span>
+            <span class="example-spacer"></span>
+            <mat-icon >minimize</mat-icon>
+            <mat-icon >clear</mat-icon>
+          </mat-toolbar-row>
+        </mat-toolbar>
+    </header>
+    <section class=chat-session>
+            <ul class="message-list">
+                <li>Hi Im Optimus</li>
+                    <li>
+                        <button mat-raised-button (click)="openDialog()">Report An Issue</button>
+                        <div *ngFor="let msg of messages">{{msg}}</div>
+                    </li>
+            </ul>
+    </section>
+        <footer class="basic-container">
+             <div id ="basic-container">
+                <mat-form-field appearance="outline">
+                    <input matInput placeholder="Type your message here...."  #Message >
+                    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>          
+                </mat-form-field>
+                <mat-icon (click) = 'DisplayMessage(Message.value)'>send</mat-icon>
+                </div>
+        </footer>
+    </div>
+ </body>
+</html>
