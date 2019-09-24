@@ -1,0 +1,8 @@
+.display{
+    display: flex;
+    align-content: center;
+}
+
+.textarea{
+    width:100%;
+}
