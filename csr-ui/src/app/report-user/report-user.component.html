@@ -1,0 +1,37 @@
+<h2 mat-dialog-title>Report a User</h2>
+
+<!-- <mat-dialog-content>
+response coming after executing the command
+</mat-dialog-content> -->
+<!-- 
+<mat-dialog-actions>
+ <button mat-button (click)="replyViaMail()">Reply via Mail</button>
+  <button mat-button (click)="replyViaChat()">Reply via Chat</button>
+</mat-dialog-actions> -->
+
+<form>
+
+
+  <!-- <mat-label>Cars</mat-label> -->
+  <!-- <select matNativeControl required> -->
+      <select>  
+    <option value="volvo">Volvo</option>
+    <option value="saab">Saab</option>
+    <option value="mercedes">Mercedes</option>
+    <option value="audi">Audi</option>
+  </select>
+
+
+<h4>Enter Description</h4>
+
+    <textarea matInput placeholder="why are u reporting the user"></textarea>
+
+
+
+<mat-dialog-actions>
+    <button mat-button (click)="submitReport">Submit</button>
+     <button mat-button mat-dialog-close>Cancel</button>
+   </mat-dialog-actions>
+   
+
+</form>

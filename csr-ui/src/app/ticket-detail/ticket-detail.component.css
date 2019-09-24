@@ -1,0 +1,29 @@
+.ticket
+{
+    padding-left: 5%;
+    padding-right: 5%;
+    border: 1px solid black;  
+}
+
+.button
+{
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 70%;
+  }
+
+  .detail
+  {
+      text-align: center;
+  }
