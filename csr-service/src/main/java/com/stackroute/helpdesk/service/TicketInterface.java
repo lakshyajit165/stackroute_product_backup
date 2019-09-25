@@ -3,6 +3,7 @@ package com.stackroute.helpdesk.service;
 import com.stackroute.helpdesk.entity.Ticket;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 

@@ -15,6 +15,7 @@ import java.util.List;
 @RestController()
 public class TicketController {
 
+
     TicketInterface ticketInterface;
     TicketRepository ticketRepository;
 
@@ -63,18 +64,6 @@ public class TicketController {
 
     }
 
-    @PostMapping(path="/tickets/complaint",  consumes={"application/json"})
-    public ResponseEntity<HashMap<String, Object>> addComplaint(@RequestBody Ticket ticket){
-        ticketRepository.save(ticket);
-
-        responseObject = new HashMap<>();
-        responseObject.put("result", ticket);
-        responseObject.put("errors", false);
-        responseObject.put("message", "Ticket generated for complaint!");
-
-        return new ResponseEntity<>(responseObject, HttpStatus.OK);
-
-    }
 
     @PatchMapping(path="/tickets/status/resolved",  consumes={"application/json"})
     public ResponseEntity<HashMap<String, Object>> changeStatustoResolved(@RequestBody Ticket ticket){
@@ -113,4 +102,5 @@ public class TicketController {
         return new ResponseEntity<>(responseObject, HttpStatus.OK);
 
     }
+
 }
