@@ -20,9 +20,9 @@ import java.util.List;
 @AllArgsConstructor
 public class Ticket {
 
-    @NotBlank
-    @Size(max=100)
-    @Indexed(unique=true)
+//    @NotBlank
+//    @Size(max=100)
+//    @Indexed(unique=true)
 //    @Id
 //    private int id;
     private String description;
