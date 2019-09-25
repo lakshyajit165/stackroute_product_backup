@@ -38,11 +38,11 @@ export class TicketServiceService {
     });    
   }
   
-  // setStatus(status: string)
-  // {
-  //   return this.http.post<any>("http://localhost:8182/setStatusforEmail",status).subscribe(res => {
-  //     console.log(res);
-  //   });   
-  // }
+  setStatus(status: string)
+  {
+    return this.http.post<any>("http://localhost:8182/setstatusforemail",status).subscribe(res => {
+      console.log(res);
+    });   
+  }
 
 }

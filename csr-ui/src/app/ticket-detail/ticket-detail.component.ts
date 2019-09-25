@@ -54,7 +54,7 @@ ngOnInit() {
   openSnackBar(message, action) {
 
     this._snackBar.open(message, action, {duration: 2000});
-  //  this._fetch.setStatus("callBackMailInitiated");
+    this._fetch.setStatus("callBackMailInitiated");
 
   }
   
