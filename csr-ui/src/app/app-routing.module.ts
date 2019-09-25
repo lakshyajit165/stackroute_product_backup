@@ -9,6 +9,8 @@ const routes: Routes = [
   { path: 'home', component: OpenTicketListComponent },
   { path: 'performance', component: PerformanceComponent },
   { path: 'ticket-assigned', component: AssignedTicketComponent },
+  // { path: 'ticket-assigned/:id', component: AssignedTicketComponent },
+  // { path: 'home/ticket-assigned/:id', component: AssignedTicketComponent },
   
 ];
 
