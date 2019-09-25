@@ -13,15 +13,15 @@ public class MailController {
     @Autowired
     private JavaMailSender javaMailSender;
 
-    @PostMapping(path = "/sendEmail")
+    @PostMapping(path = "/callbackmail")
     public String sendMsg(@RequestBody String email)
     {
         SimpleMailMessage simpleMailMessage=new SimpleMailMessage();
         simpleMailMessage.setTo(email);
-        simpleMailMessage.setSubject("callBack mail for ur problem");
-        simpleMailMessage.setText("call on this no 1234567890 to resolve your queires");
+        simpleMailMessage.setSubject("HelpDesk optimus callback mail");
+        simpleMailMessage.setText("We will get back to you shortly.");
 
         javaMailSender.send(simpleMailMessage);
-        return "success.......................";
+        return "Mail Success!";
     }
 }
