@@ -29,12 +29,12 @@ public class Ticket {
     private String usermail;
     private String status;
     private int rating;
-    private Date time_created;
-    private Date time_resolved;
-    private Date assign_me_time;
-    private List<String> commands_used;
+    private Date timeCreated;
+    private Date timeResolved;
+    private Date assignMeTime;
+    private List<String> commandsUsed;
     private String type;
-    private String solved_by;
+    private String solvedBy;
     private List<String> tags;
 
 

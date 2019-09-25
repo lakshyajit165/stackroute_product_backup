@@ -70,11 +70,11 @@ public class TicketController {
         complaint.setUsermail("user1@gmail.com");
         complaint.setStatus("open");
         complaint.setRating(0);
-        complaint.setTime_created(new Date());
-        complaint.setTime_resolved(new Date());
-        complaint.setCommands_used(Collections.singletonList("NA"));
+        complaint.setTimeCreated(new Date());
+        complaint.setTimeResolved(new Date());
+        complaint.setCommandsUsed(Collections.singletonList("NA"));
         complaint.setType("complaint");
-        complaint.setSolved_by("company");
+        complaint.setSolvedBy("company");
         complaint.setTags(Collections.singletonList("NA"));
 
         ticketRepository.save(complaint);
