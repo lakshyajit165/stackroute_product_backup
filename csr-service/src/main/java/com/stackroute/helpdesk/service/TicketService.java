@@ -13,7 +13,6 @@ public class TicketService implements TicketInterface{
     @Autowired
     private TicketRepository ticketRepository;
 
-
     @Override
     public List<Ticket> getTickets() {
         return ticketRepository.findAll();
