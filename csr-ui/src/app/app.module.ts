@@ -24,7 +24,8 @@ import {
 } from '@angular/material';
 import { NavigationComponent } from './navigation/navigation.component'
 import { HttpClientModule } from '@angular/common/http';
-
+import {ReactiveFormsModule} from '@angular/forms';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,7 +57,10 @@ import { HttpClientModule } from '@angular/common/http';
     MatSelectModule,
     MatFormFieldModule,
     MatIconModule,
-    FormsModule
+    FormsModule,
+    BrowserModule,
+    ReactiveFormsModule,
+    MatAutocompleteModule
   ],
   providers: [],
   bootstrap: [AppComponent]

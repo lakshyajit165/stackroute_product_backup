@@ -5,9 +5,13 @@ import {ResponseDialogComponent} from "../response-dialog/response-dialog.compon
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {ReportUserComponent} from "../report-user/report-user.component";
 import { ActivatedRoute, Router } from '@angular/router';
-import { map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { TicketServiceService } from '../ticket-service.service';
+import {FormControl} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+
 @Component({
   selector: 'app-ticket-detail',
   templateUrl: './ticket-detail.component.html',
@@ -20,7 +24,10 @@ export class TicketDetailComponent implements OnInit {
   id: string;
   msg: Object;
   usermail: string;
-    
+   
+  commands: any;
+  commandName: string[]= [];
+
   // ngOnInit() {
   //   this.route.paramMap.pipe(map(paramMap => {
   //     this.id = paramMap.get('id');
@@ -34,6 +41,14 @@ export class TicketDetailComponent implements OnInit {
 // }
 
 ngOnInit() {
+  console.log("this is current state1");
+ this._fetch.getCommandName().subscribe(res =>{
+    this.commands=res;
+ //   console.log(res);
+    this.searchCommands();
+    });
+   
+  
   
 }
 
@@ -54,7 +69,7 @@ ngOnInit() {
   openSnackBar(message, action) {
 
     this._snackBar.open(message, action, {duration: 2000});
-    this._fetch.setStatus("callBackMailInitiated");
+    this._fetch.setStatusforResolve(this.msg);
 
   }
   
@@ -72,7 +87,43 @@ ngOnInit() {
   {
   // this._fetch.sendUserMail();
    // this._fetch.sendUserMail("lakshyajit165@gmail.com");
+   console.log("this is current state2");
    this._fetch.sendUserMail(this.usermail);
+   console.log("this is current state3");
+   console.log(this.msg);
+   this._fetch.setStatusforMail(this.msg);
   }
 
+
+  myControl = new FormControl();
+  filteredOptions: Observable<string[]>;
+  
+
+searchCommands(){
+
+this.commands.forEach(element => {
+  if(element.status=="active")
+  {
+    console.log(element.name);
+    this.commandName.push(element.name);
+  }
+});
+
+//console.log(this.commandName);
+//for filtering the commands according to the command name
+this.filteredOptions = this.myControl.valueChanges
+.pipe(
+  startWith(''),
+  map(value => this._filter(value))
+);
 }
+
+
+private _filter(value: string): string[] {
+  const filterValue = value.toLowerCase();
+
+  return this.commandName.filter(option => option.toLowerCase().includes(filterValue));
+}
+
+}
+

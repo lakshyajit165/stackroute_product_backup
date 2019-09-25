@@ -8,10 +8,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
 
-@RestController()
 @CrossOrigin(origins="http://localhost:4200")
+@RestController()
 public class TicketController {
 
     TicketInterface ticketInterface;
@@ -62,25 +63,12 @@ public class TicketController {
 
     }
 
-    @PostMapping(path="/tickets/complaint")
-    public ResponseEntity<HashMap<String, Object>> addComplaint(@RequestBody String description){
-
-        Ticket complaint = new Ticket();
-        complaint.setDescription(description);
-        complaint.setUsermail("user1@gmail.com");
-        complaint.setStatus("open");
-        complaint.setRating(0);
-        complaint.setTime_created(new Date());
-        complaint.setTime_resolved(new Date());
-        complaint.setCommands_used(Collections.singletonList("NA"));
-        complaint.setType("complaint");
-        complaint.setSolved_by("company");
-        complaint.setTags(Collections.singletonList("NA"));
-
-        ticketRepository.save(complaint);
+    @PostMapping(path="/tickets/complaint",  consumes={"application/json"})
+    public ResponseEntity<HashMap<String, Object>> addComplaint(@RequestBody Ticket ticket){
+        ticketRepository.save(ticket);
 
         responseObject = new HashMap<>();
-        responseObject.put("result", complaint);
+        responseObject.put("result", ticket);
         responseObject.put("errors", false);
         responseObject.put("message", "Ticket generated for complaint!");
 
@@ -88,5 +76,41 @@ public class TicketController {
 
     }
 
+    @PatchMapping(path="/tickets/status/resolved",  consumes={"application/json"})
+    public ResponseEntity<HashMap<String, Object>> changeStatustoResolved(@RequestBody Ticket ticket){
+        System.out.println("Ticket: " + ticket);
+        Ticket oldTicket = ticketRepository.findById(ticket.getId()).get();
+        System.out.println("Old Ticket : " + oldTicket);
+        //oldTicket.setStatus(ticket.getStatus());
+        oldTicket.setStatus("closed");
+        ticketRepository.save(oldTicket);
+        System.out.println("old ticket after update: " + oldTicket);
 
+        responseObject = new HashMap<>();
+        responseObject.put("result", oldTicket);
+        responseObject.put("errors", false);
+        responseObject.put("message", "Ticket resolved");
+
+        return new ResponseEntity<>(responseObject, HttpStatus.OK);
+
+    }
+
+    @PatchMapping(path="/tickets/status/callbackmail",  consumes={"application/json"})
+    public ResponseEntity<HashMap<String, Object>> changeStatustoCallBackMail(@RequestBody Ticket ticket){
+        System.out.println("Ticket: " + ticket);
+        Ticket oldTicket = ticketRepository.findById(ticket.getId()).get();
+        System.out.println("Old Ticket : " + oldTicket);
+        //oldTicket.setStatus(ticket.getStatus());
+        oldTicket.setStatus("callbackmail");
+        ticketRepository.save(oldTicket);
+        System.out.println("old ticket after update: " + oldTicket);
+
+        responseObject = new HashMap<>();
+        responseObject.put("result", oldTicket);
+        responseObject.put("errors", false);
+        responseObject.put("message", "Ticket goes for callback mail");
+
+        return new ResponseEntity<>(responseObject, HttpStatus.OK);
+
+    }
 }

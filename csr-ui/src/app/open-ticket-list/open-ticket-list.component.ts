@@ -22,7 +22,7 @@ tickets: any;
     assignMe(ticket:Ticket)
     {
     console.log(ticket);
-      this.router.navigate(['/ticket-assigned'], { state: { res: ticket }});
+      this.router.navigate(['/ticketassigned'], { state: { res: ticket }});
     // this.router.navigateByUrl('/ticket-assigned');
     }
 

@@ -37,12 +37,30 @@ export class TicketServiceService {
       console.log(res);
     });    
   }
+
+
+  //for now json server for getting commmand details
+  getCommandName():Observable<any>{
+    return this.http.get<any>("http://localhost:3000/result");
+  }
+
   
-  setStatus(status: string)
+  setStatusforMail(ticket: Object)
   {
-    return this.http.post<any>("http://localhost:8182/setstatusforemail",status).subscribe(res => {
+    return this.http.patch<any>("http://localhost:8182/tickets/status/callbackmail",ticket).subscribe(res => {
       console.log(res);
     });   
   }
 
-}
+
+  setStatusforResolve(ticket: Object)
+  {
+    return this.http.patch<any>("http://localhost:8182/tickets/status/resolved",ticket).subscribe(res => {
+      console.log(res);
+    });   
+  }
+
+  }
+
+
+
