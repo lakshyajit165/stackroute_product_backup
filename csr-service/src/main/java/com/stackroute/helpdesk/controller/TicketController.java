@@ -14,14 +14,8 @@ import java.util.*;
 @CrossOrigin(origins="http://localhost:4200")
 public class TicketController {
 
-    TicketInterface ticketInterface;
-    TicketRepository ticketRepository;
-
     @Autowired
-    public TicketController(TicketInterface ticketInterface, TicketRepository ticketRepository){
-        this.ticketInterface = ticketInterface;
-        this.ticketRepository = ticketRepository;
-    }
+    TicketInterface ticketInterface;
 
     HashMap<String, Object> responseObject;
 
@@ -62,29 +56,5 @@ public class TicketController {
 
     }
 
-    @PostMapping(path="/tickets/complaint")
-    public ResponseEntity<HashMap<String, Object>> addComplaint(@RequestBody String description){
 
-        Ticket complaint = new Ticket();
-        complaint.setDescription(description);
-        complaint.setUsermail("user1@gmail.com");
-        complaint.setStatus("open");
-        complaint.setRating(0);
-        complaint.setTimeCreated(new Date());
-        complaint.setTimeResolved(new Date());
-        complaint.setCommandsUsed(Collections.singletonList("NA"));
-        complaint.setType("complaint");
-        complaint.setSolvedBy("company");
-        complaint.setTags(Collections.singletonList("NA"));
-
-        ticketRepository.save(complaint);
-
-        responseObject = new HashMap<>();
-        responseObject.put("result", complaint);
-        responseObject.put("errors", false);
-        responseObject.put("message", "Ticket generated for complaint!");
-
-        return new ResponseEntity<>(responseObject, HttpStatus.OK);
-
-    }
 }
