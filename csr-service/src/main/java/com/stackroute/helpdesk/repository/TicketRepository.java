@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
+
 public interface TicketRepository extends MongoRepository<Ticket, String> {
 
     @Query("{ 'status': 'open', 'type': 'query'}")

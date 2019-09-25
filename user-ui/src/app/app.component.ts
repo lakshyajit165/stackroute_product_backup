@@ -2,7 +2,8 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MatDialog} from "@angular/material";
 import { CourseDialogComponentComponent } from './course-dialog-component/course-dialog-component.component';
 import { MatDialogRef } from '@angular/material';
-
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 export interface DialogData {
   animal: string;
@@ -13,13 +14,19 @@ export interface DialogData {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
+
   description: string;
   messages: string[];
+  complaintUrl: string;
 
-    constructor(public dialog: MatDialog){
-      this.messages = [];
-    }
-  
+  constructor(public dialog: MatDialog, public http: HttpClient){
+    this.messages = [];
+  }
+
+  ngOnInit() {
+    this.complaintUrl = "http://localhost:8080/tickets/complaint";
+  }
+
   openDialog(): void {
     const dialogRef = this.dialog.open(CourseDialogComponentComponent, {
       width: '350px',
@@ -30,6 +37,7 @@ export class AppComponent implements OnInit{
       console.log('The dialog was closed');
       this.description = result.description;
       console.log(this.description);
+      this.save(this.description);
       });
   }
 
@@ -37,7 +45,9 @@ export class AppComponent implements OnInit{
     console.log(message1);
     this.messages.push(message1);
   }
-  
-    ngOnInit() {
-    }
+
+  public save(desc: string) {
+    // return this.http.post<Observable>(this.complaintUrl, description);
+    return this.http.post<any>(this.complaintUrl, desc);
+  }
 }
