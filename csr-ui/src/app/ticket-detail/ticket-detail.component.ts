@@ -52,7 +52,10 @@ ngOnInit() {
   }
 
   openSnackBar(message, action) {
+
     this._snackBar.open(message, action, {duration: 2000});
+  //  this._fetch.setStatus("callBackMailInitiated");
+
   }
   
   openDialogforReport()
@@ -68,7 +71,8 @@ ngOnInit() {
   sendMail()
   {
   // this._fetch.sendUserMail();
-    this._fetch.sendUserMail("lakshyajit165@gmail.com");
+   // this._fetch.sendUserMail("lakshyajit165@gmail.com");
+   this._fetch.sendUserMail(this.usermail);
   }
 
 }

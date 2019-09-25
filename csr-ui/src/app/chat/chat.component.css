@@ -4,7 +4,7 @@
       margin-left: auto;
       margin-right: auto;
       margin-top: 80px;
-      width:300px;
+      width:500px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -31,11 +31,12 @@
     
 
       #basic-container{
-        width:6rem;
+        width:90%;
         margin-top: 9rem;
         padding-top:9rem; 
+        padding-left: 30px;
         margin-bottom: 0;
-        align-content: left;
+        align-content: center;
         display: flex;
         
       }
@@ -51,4 +52,9 @@
 {
   padding-left: 20px;
   padding-top: 20px;
+}
+
+.input
+{
+  width: 400%;
 }
