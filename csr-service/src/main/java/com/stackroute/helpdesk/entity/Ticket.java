@@ -19,7 +19,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Ticket {
 
-//    @NotBlank
+    //    @NotBlank
 //    @Size(max=100)
 //    @Indexed(unique=true)
     private String description;
