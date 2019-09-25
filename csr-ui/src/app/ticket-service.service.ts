@@ -16,7 +16,7 @@ export class TicketServiceService {
 
   getProduct():Observable<any>
   {
-    return this.http.get<any>("http://localhost:8182/tickets");
+    return this.http.get<any>("http://localhost:8182/tickets/open");
   }
   // postData(data)
   // {
@@ -33,13 +33,14 @@ export class TicketServiceService {
       //IMPORTANT
      
   }
-    return this.http.post<any>("http://localhost:8182/sendEmail",mail).subscribe(res => {
+    return this.http.post<any>("http://localhost:8182/callbackmail",mail).subscribe(res => {
       console.log(res);
     });    
   }
 
 
   //for now json server for getting commmand details
+  //using mock data for now.....we will integrate it with command repo service
   getCommandName():Observable<any>{
     return this.http.get<any>("http://localhost:3000/result");
   }

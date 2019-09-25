@@ -19,8 +19,8 @@ public class Ticket {
     //    @NotBlank
 //    @Size(max=100)
 //    @Indexed(unique=true)
-//    @Id
-//    private int id;
+    @Id
+    private String id;
     private String description;
     private String usermail;
     private String status;
@@ -32,4 +32,18 @@ public class Ticket {
     private String type;
     private String solvedBy;
     private List<String> tags;
+
+    public Ticket(String description, String usermail, String status, int rating, Date timeCreated, Date timeResolved, Date assignMeTime, List<String> commandsUsed, String type, String solvedBy, List<String> tags) {
+        this.description = description;
+        this.usermail = usermail;
+        this.status = status;
+        this.rating = rating;
+        this.timeCreated = timeCreated;
+        this.timeResolved = timeResolved;
+        this.assignMeTime = assignMeTime;
+        this.commandsUsed = commandsUsed;
+        this.type = type;
+        this.solvedBy = solvedBy;
+        this.tags = tags;
+    }
 }
