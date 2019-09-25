@@ -1,25 +1,26 @@
-<p>chat works!</p>
-Use IMAP to check Gmail on other email clients
-Set up IMAP and change your SMTP settings to read Gmail messages in other mail clients, like Microsoft Outlook and Apple Mail. When you use IMAP, you can read your Gmail messages on multiple devices, and messages are synced in real time. You can also read Gmail messages using POP.
 
-Note: To avoid temporarily locking yourself out of your account, make sure you don't exceed 2500 MB per day for IMAP downloads and 500 MB per day for IMAP uploads. If you're setting up a single IMAP account on multiple computers, try taking a break between each setup.
+ <div class="chat">
+    <header class="chat-window">
+        <mat-toolbar color="primary">
+        <mat-toolbar-row>
+            <span>Live Chat</span>
+            <span class="example-spacer"></span>
+           <!-- <mat-icon ></mat-icon>
+            <mat-icon >clear</mat-icon> -->
+        </mat-toolbar-row>
+    </mat-toolbar>
+</header>
+      
+      <section class=chat-session>
+</section>
 
-Set up IMAP
-Step 1: Check that IMAP is turned on
-On your computer, open Gmail.
-In the top right, click Settings Settings.
-Click Settings.
-Click the Forwarding and POP/IMAP tab.
-In the "IMAP access" section, select Enable IMAP.
-Click Save Changes.
-Step 2: Change SMTP & other settings in your email client
-Use the table below to update your client with the correct information. For help updating your settings, search your email client's Help Center for instructions on setting up IMAP.
+        <div id ="basic-container">
+           <mat-form-field appearance="outline">
+               <input matInput placeholder="Type your message here...."  #Message >
+               <mat-icon matSuffix class="iconset">sentiment_very_satisfied</mat-icon>          
+           </mat-form-field>
+           <!-- <mat-icon (click) = 'DisplayMessage(Message.value)' class="iconset1">send</mat-icon> -->
+           <mat-icon class="iconset1">send</mat-icon>
+           </div>
 
-Incoming Mail (IMAP) Server	
-imap.gmail.com
-
-Requires SSL: Yes
-
-Port: 993
-
-Outgoing Mail (SMTP) Server
+</div> 

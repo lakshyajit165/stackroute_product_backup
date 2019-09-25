@@ -4,6 +4,7 @@ export interface Ticket
       id:string
       description:string,
       usermail:string,
+      csrmail:string,
       status:string,
       rating:number,
       time_created:string,
