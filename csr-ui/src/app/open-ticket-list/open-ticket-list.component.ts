@@ -11,28 +11,31 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class OpenTicketListComponent implements OnInit {
 
-tickets: any;
+  tickets: any;
 
-  constructor( private http: HttpClient,
-    private _fetch: TicketServiceService,
+  constructor(
+    private http: HttpClient,
+    private ticketService: TicketServiceService,
     private activatedRoute: ActivatedRoute,
-   private router: Router) { }
-    
-
-    assignMe(ticket:Ticket)
-    {
-    console.log(ticket);
-      this.router.navigate(['/ticketassigned'], { state: { res: ticket }});
-    // this.router.navigateByUrl('/ticket-assigned');
-    }
-
-
-  ngOnInit() {
-    this._fetch.getProduct().subscribe(res => {
+    private router: Router
+  ) {
+    this.ticketService.getProduct().subscribe(res => {
       this.tickets = res.result;
       console.log(this.tickets);
     });
+  }
+
+
+  assignMe(ticket: Ticket) {
+    console.log(ticket);
+    this.router.navigate(['/ticketassigned'], { state: { res: ticket }});
+    // this.router.navigateByUrl('/ticket-assigned');
+  }
+
+
+  ngOnInit() {
     
+
   }
 
   }

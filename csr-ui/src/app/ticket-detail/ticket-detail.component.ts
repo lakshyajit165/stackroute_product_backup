@@ -42,7 +42,7 @@ export class TicketDetailComponent implements OnInit {
 
 ngOnInit() {
   console.log("this is current state1");
- this._fetch.getCommandName().subscribe(res =>{
+ this.ticketService.getCommandName().subscribe(res =>{
     this.commands=res;
  //   console.log(res);
     this.searchCommands();
@@ -52,12 +52,15 @@ ngOnInit() {
   
 }
 
-  constructor(private _snackBar: MatSnackBar,private dialog:MatDialog,private dialog1:MatDialog, private route: ActivatedRoute,private router: Router
-    ,private _fetch: TicketServiceService,private http: HttpClient) { 
-    // if(this.router.getCurrentNavigation().extras.state !== undefined){
-    //   this.msg = this.router.getCurrentNavigation().extras.state.res.message;
-    //   console.log(this.msg);
-    // }
+  constructor(
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog,
+    private dialog1: MatDialog,
+    private route: ActivatedRoute,
+    private router: Router,
+    private ticketService: TicketServiceService,
+    private http: HttpClient) {
+   
     if(this.router.getCurrentNavigation().extras.state !== undefined){
       this.msg = this.router.getCurrentNavigation().extras.state.res;
       this.usermail = this.router.getCurrentNavigation().extras.state.res.usermail;
@@ -68,8 +71,9 @@ ngOnInit() {
 
   openSnackBar(message, action) {
 
-    this._snackBar.open(message, action, {duration: 2000});
-    this._fetch.setStatusforResolve(this.msg);
+    this.snackBar.open(message, action, {duration: 2000});
+    this.ticketService.setStatusforResolve(this.msg);
+    // this.router.navigate(['/home']);
 
   }
   
@@ -85,13 +89,13 @@ ngOnInit() {
 
   sendMail()
   {
-  // this._fetch.sendUserMail();
-   // this._fetch.sendUserMail("lakshyajit165@gmail.com");
+  // this.ticketService.sendUserMail();
+   // this.ticketService.sendUserMail("lakshyajit165@gmail.com");
    console.log("this is current state2");
-   this._fetch.sendUserMail(this.usermail);
+   this.ticketService.sendUserMail(this.usermail);
    console.log("this is current state3");
    console.log(this.msg);
-   this._fetch.setStatusforMail(this.msg);
+   this.ticketService.setStatusforMail(this.msg);
   }
 
 

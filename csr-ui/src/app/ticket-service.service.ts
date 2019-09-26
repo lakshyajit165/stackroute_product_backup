@@ -6,13 +6,17 @@ import { Observable } from 'rxjs';
 
 import { catchError } from 'rxjs/operators';
 
+import { Router } from '@angular/router';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class TicketServiceService {
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private router: Router) { }
 
   getProduct():Observable<any>
   {
@@ -58,6 +62,7 @@ export class TicketServiceService {
   {
     return this.http.patch<any>("http://localhost:8080/tickets/status/resolved",ticket).subscribe(res => {
       console.log(res);
+      this.router.navigate(['/home']);
     });   
   }
 

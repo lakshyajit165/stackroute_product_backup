@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MatDialog} from "@angular/material";
+import {MatDialog} from '@angular/material';
 import { CourseDialogComponentComponent } from './course-dialog-component/course-dialog-component.component';
 import { MatDialogRef } from '@angular/material';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -13,18 +13,18 @@ export interface DialogData {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
 
   description: string;
   messages: string[];
   complaintUrl: string;
 
-  constructor(public dialog: MatDialog, public http: HttpClient){
+  constructor(public dialog: MatDialog, public http: HttpClient) {
     this.messages = [];
   }
 
   ngOnInit() {
-    this.complaintUrl = "http://localhost:8080/tickets/complaint";
+    this.complaintUrl = 'http://localhost:8080/tickets/complaint';
   }
 
   openDialog(): void {
@@ -36,9 +36,12 @@ export class AppComponent implements OnInit{
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       this.description = result.description;
-      console.log(this.description);
-      this.save(this.description);
-      });
+
+      if (this.description !== '') {
+        console.log(this.description);
+        this.save(this.description);
+      }
+    });
   }
 
   DisplayMessage(message1: string) {
@@ -48,6 +51,9 @@ export class AppComponent implements OnInit{
 
   public save(desc: string) {
     // return this.http.post<Observable>(this.complaintUrl, description);
-    return this.http.post<any>(this.complaintUrl, desc);
+    // console.log("save");
+      this.http.post<any>(this.complaintUrl, desc).subscribe(result => {
+        console.log(result);
+      });
   }
 }

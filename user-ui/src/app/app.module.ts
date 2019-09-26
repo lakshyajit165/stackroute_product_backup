@@ -11,7 +11,7 @@ import { MatIconModule, MatInputModule, MatFormFieldModule } from '@angular/mate
 import {MatDialogModule} from '@angular/material';
 import { CourseDialogComponentComponent } from './course-dialog-component/course-dialog-component.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -35,10 +35,9 @@ import { HttpClientModule } from "@angular/common/http";
     MatDialogModule,
     FormsModule,
     HttpClientModule
-    
   ],
   providers: [CourseDialogComponentComponent],
-  exports:[CourseDialogComponentComponent],
+  exports: [CourseDialogComponentComponent],
   bootstrap: [AppComponent],
   entryComponents: [CourseDialogComponentComponent]
 })

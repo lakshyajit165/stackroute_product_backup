@@ -15,9 +15,8 @@ export class CourseDialogComponentComponent implements OnInit {
 
   private complaintUrl: string;
   constructor(
-    public dialogRef: MatDialogRef<CourseDialogComponentComponent>, 
+    public dialogRef: MatDialogRef<CourseDialogComponentComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {
-      
     }
 
   onNoClick(): void {

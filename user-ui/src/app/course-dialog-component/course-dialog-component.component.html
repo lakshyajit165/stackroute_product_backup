@@ -4,7 +4,7 @@
 </h2>
     <div class="display">
     <div mat-form-field >
-                    <mat-label>Enter Description</mat-label>
+                    <mat-label>Enter Description</mat-label><br><br>
                     <textarea matInput [(ngModel)]="data.description"
                               cdkTextareaAutosize
                               #autosize="cdkTextareaAutosize"
@@ -12,5 +12,5 @@
     </div>
     </div>
     <div mat-dailog-actions>
-        <button mat-button color="primary" [mat-dialog-close]="data" cdkFocusInitial>Submit</button>
+        <button mat-button color="primary" [mat-dialog-close]="data" cdkFocusInitial (click)="">Submit</button>
     </div>

@@ -16,7 +16,7 @@ import java.util.Date;
 import java.util.HashMap;
 
 @RestController
-@CrossOrigin(origins="http://localhost:4201")
+@CrossOrigin(origins = { "http://localhost:4200", "http:localhost:4201" })
 public class MailController {
 
     @Autowired
@@ -100,7 +100,7 @@ public class MailController {
 
         Ticket complaint = new Ticket();
         complaint.setDescription(description);
-        complaint.setUsermail("user1@gmail.com");
+        complaint.setUsermail("user2@gmail.com");
         complaint.setStatus("open");
         complaint.setRating(0);
         complaint.setTimeCreated(new Date());
