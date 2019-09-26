@@ -58,3 +58,16 @@
 {
   width: 400%;
 }
+
+li{
+  list-style-type: none;
+  margin-bottom: 5px;
+}
+
+.message-list {
+  flex-grow: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}

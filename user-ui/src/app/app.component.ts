@@ -4,10 +4,12 @@ import { CourseDialogComponentComponent } from './course-dialog-component/course
 import { MatDialogRef } from '@angular/material';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import * as Stomp from 'stompjs';
+import * as SockJS from 'sockjs-client';
 
-export interface DialogData {
-  animal: string;
-}
+// export interface DialogData {
+//   animal: string;
+// }
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -19,11 +21,17 @@ export class AppComponent implements OnInit {
   messages: string[];
   complaintUrl: string;
 
+  private serverUrl = 'http://localhost:8080/socket';
+  private stompClient;
+
+
   constructor(public dialog: MatDialog, public http: HttpClient) {
-    this.messages = [];
+    this.initializeWebSocketConnection();
+
   }
 
   ngOnInit() {
+    this.messages = [];
     this.complaintUrl = 'http://localhost:8080/tickets/complaint';
   }
 
@@ -44,9 +52,10 @@ export class AppComponent implements OnInit {
     });
   }
 
-  DisplayMessage(message1: string) {
+  displayAndSendMessage(message1: string) {
     console.log(message1);
-    this.messages.push(message1);
+    // this.messages.push(message1);
+    this.stompClient.send('/app/send/message' , {}, message1);
   }
 
   public save(desc: string) {
@@ -56,5 +65,20 @@ export class AppComponent implements OnInit {
       this.http.post<any>(this.complaintUrl, desc).subscribe(result => {
         console.log(result);
       });
+  }
+
+  initializeWebSocketConnection() {
+    const ws = new SockJS(this.serverUrl);
+    this.stompClient = Stomp.over(ws);
+    // let that = this;
+    this.stompClient.connect({}, (frame) => {
+      this.stompClient.subscribe('/chat', (message) => {
+        if (message.body) {
+          // $(".chat").append("<div class='message'>"+message.body+"</div>")
+          this.messages.push(message.body);
+          console.log(message.body);
+        }
+      });
+    });
   }
 }

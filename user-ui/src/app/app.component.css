@@ -4,46 +4,52 @@
 }
 .example-icon {
     padding: 0 14px;
-  }
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+.chat{
+  margin-left: auto;
+  margin-right: auto;
+  width:60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   
-  .example-spacer {
-    flex: 1 1 auto;
-  }
-  .chat{
-      margin-left: auto;
-      margin-right: auto;
-      width:60%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      
-  }
-  #basic-container{
-    width:6rem;
-    margin-top: 9rem;
-    padding-top:9rem; 
-    margin-bottom: 0;
-    align-content: left;
-    display: flex;
-    
-  }
+}
+#basic-container{
+  width:100%;
+  margin-top: 9rem;
+  padding-top:9rem; 
+  margin-bottom: 0;
+  align-content: left;
+  display: flex;
+  
+}
 
-  .chat-session {
-    flex-grow: 1;
-    display: flex;
-    overflow: hidden;
-  }
+#sendbutton{
+  margin-left: 10px;
+  margin-top: 5px;
+}
 
-  .message-list {
-    flex-grow: 1;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-  }
+.chat-session {
+  flex-grow: 1;
+  display: flex;
+  overflow: hidden;
+}
 
-  li {
+.message-list {
+  flex-grow: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+li {
     list-style-type: none;
+    margin-bottom: 5px;
 }
 
 mat-form-field-infix{

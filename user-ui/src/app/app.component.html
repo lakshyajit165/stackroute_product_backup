@@ -23,13 +23,16 @@
             </ul>
     </section>
         <footer class="basic-container">
-             <div id ="basic-container">
+            <div id ="basic-container">
                 <mat-form-field appearance="outline">
                     <input matInput placeholder="Type your message here...."  #Message >
                     <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>          
                 </mat-form-field>
-                <mat-icon (click) = 'DisplayMessage(Message.value)'>send</mat-icon>
-                </div>
+                <button mat-fab color="primary" (click) = 'displayAndSendMessage(Message.value)' id="sendbutton">
+                    <mat-icon >send</mat-icon>
+                </button>
+                
+            </div>
         </footer>
     </div>
  </body>

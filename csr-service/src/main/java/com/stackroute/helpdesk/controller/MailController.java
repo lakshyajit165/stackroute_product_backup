@@ -100,7 +100,7 @@ public class MailController {
 
         Ticket complaint = new Ticket();
         complaint.setDescription(description);
-        complaint.setUsermail("user2@gmail.com");
+        complaint.setUsermail("lakshyajit165@gmail.com");
         complaint.setStatus("open");
         complaint.setRating(0);
         complaint.setTimeCreated(new Date());

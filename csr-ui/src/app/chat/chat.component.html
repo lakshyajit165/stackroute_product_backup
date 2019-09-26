@@ -12,7 +12,13 @@
 </header>
       
       <section class=chat-session>
-</section>
+            <ul class="message-list">
+                    
+                <li>
+                        <div *ngFor="let msg of messages">{{msg}}</div>
+                </li>
+            </ul>
+      </section>
 
         <div id ="basic-container">
            <mat-form-field appearance="outline" class="input">
@@ -20,7 +26,9 @@
                <mat-icon matSuffix class="iconset">sentiment_very_satisfied</mat-icon>          
            </mat-form-field>
            <!-- <mat-icon (click) = 'DisplayMessage(Message.value)' class="iconset1">send</mat-icon> -->
-           <mat-icon class="iconset1">send</mat-icon>
+           <button mat-fab color="primary" (click) = 'displayAndSendMessage(Message.value)' id="sendbutton">
+                 <mat-icon class="iconset1">send</mat-icon>
+            </button>
            </div>
 
 </div> 

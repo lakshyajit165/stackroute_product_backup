@@ -1,26 +1,14 @@
 
-<!-- <mat-list>
-    <mat-list-item *ngFor="let list of lists">
-        <h4 matLine>{{list.description}}</h4>
-        <h4 matLine>{{list.tags}}</h4>
-        <h4 matLine>{{list.time_created}}</h4>
-        <button class="size" mat-stroked-button [routerLink]="['/ticket-assigned']">Assign me</button>
-     </mat-list-item>
-     <mat-divider></mat-divider>
-</mat-list>  -->
-
-<h1>///////////////////////////////</h1>
 
 <h2 class="middle">List of open tickets</h2>
-<!-- 
-{{tickets[0].description}} -->
+
 
 <mat-list>
 
    <mat-list-item *ngFor="let list of tickets" class="listitem">
-       <h4 matLine>{{list.description}}</h4>
-       <h4 matLine>{{list.tags}}</h4>
-       <h4>{{list.time_created}}</h4>
+       <h4 matLine>{{ list.description }}</h4>
+       <h4 matLine>{{ list.tags }}</h4>
+       <h4>{{ list.timeCreated }}</h4>
       <!-- <button class="size" mat-stroked-button [routerLink]="['/ticket-assigned', list.id]">Assign me</button> -->
       <button (click)="assignMe(list)" class="size" mat-stroked-button>Assign me</button>
       <mat-divider></mat-divider>
