@@ -16,7 +16,7 @@ import java.util.Date;
 import java.util.HashMap;
 
 @RestController
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin(origins="http://localhost:4201")
 public class MailController {
 
     @Autowired
@@ -28,24 +28,72 @@ public class MailController {
 
     HashMap<String, Object> responseObject;
 
-    @PostMapping(path = "/callbackmail")
-    public ResponseEntity<HashMap<String, Object>> sendMsg(@RequestBody String email)
-    {
+    // Ticket could not be resolved by CSR, hence callback initiated
+
+    @PatchMapping(path="/tickets/status/callbackmail",  consumes={"application/json"})
+    public ResponseEntity<HashMap<String, Object>> changeStatustoCallBackMail(@RequestBody Ticket ticket){
+        System.out.println("Ticket: " + ticket);
+        Ticket oldTicket = ticketRepository.findById(ticket.getId()).get();
+
+        // To get user email and send an email stating that a callback is initiated (CSR unable to resolve query)
+        String email = oldTicket.getUsermail();
+
+        System.out.println("Old Ticket : " + oldTicket);
+        //oldTicket.setStatus(ticket.getStatus());
+        oldTicket.setStatus("callbackmail");
+        ticketRepository.save(oldTicket);
+        System.out.println("old ticket after update: " + oldTicket);
+
+        // Sending mail to the user
         SimpleMailMessage simpleMailMessage=new SimpleMailMessage();
         simpleMailMessage.setTo(email);
         simpleMailMessage.setSubject("HelpDesk optimus callback mail");
         simpleMailMessage.setText("We will get back to you regarding your query shortly.");
-
-
         javaMailSender.send(simpleMailMessage);
 
         responseObject = new HashMap<>();
-        responseObject.put("result", "Mail Success");
-        responseObject.put("msg", "Mail sent!");
-        responseObject.put("error", false);
+        responseObject.put("result", oldTicket);
+        responseObject.put("errors", false);
+        responseObject.put("message", "Callback initiated!");
 
-        return new ResponseEntity<>(responseObject, HttpStatus.OK)  ;
+        return new ResponseEntity<>(responseObject, HttpStatus.OK);
+
     }
+
+    // Ticket is resolved
+
+    @PatchMapping(path="/tickets/status/resolved",  consumes={"application/json"})
+    public ResponseEntity<HashMap<String, Object>> changeStatustoResolved(@RequestBody Ticket ticket){
+        System.out.println("Ticket: " + ticket);
+        Ticket oldTicket = ticketRepository.findById(ticket.getId()).get();
+
+        // Get user email
+        String email = oldTicket.getUsermail();
+
+        System.out.println("Old Ticket : " + oldTicket);
+        //oldTicket.setStatus(ticket.getStatus());
+        oldTicket.setStatus("closed");
+        ticketRepository.save(oldTicket);
+        System.out.println("old ticket after update: " + oldTicket);
+
+        // Sending mail to the user (Stating that the ticket is resolved)
+        SimpleMailMessage simpleMailMessage=new SimpleMailMessage();
+        simpleMailMessage.setTo(email);
+        simpleMailMessage.setSubject("HelpDesk optimus Ticket Resolved");
+        simpleMailMessage.setText("Your ticket with id "+oldTicket.getId()+" has been resolved!");
+        javaMailSender.send(simpleMailMessage);
+
+        responseObject = new HashMap<>();
+        responseObject.put("result", oldTicket);
+        responseObject.put("errors", false);
+        responseObject.put("message", "Ticket resolved!");
+
+        return new ResponseEntity<>(responseObject, HttpStatus.OK);
+
+    }
+
+    // User registers a complaint(A ticket is generated) - to be changed to receive user email
+    // after implementing oauth
 
     @PostMapping(path="/tickets/complaint")
     public ResponseEntity<HashMap<String, Object>> addComplaint(@RequestBody String description){
@@ -57,6 +105,7 @@ public class MailController {
         complaint.setRating(0);
         complaint.setTimeCreated(new Date());
         complaint.setTimeResolved(new Date());
+        complaint.setAssignMeTime(new Date());
         complaint.setCommandsUsed(Collections.singletonList("NA"));
         complaint.setType("complaint");
         complaint.setSolvedBy("company");
@@ -73,4 +122,6 @@ public class MailController {
 
 
     }
+
+
 }

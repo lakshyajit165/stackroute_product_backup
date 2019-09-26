@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin(origins="http://localhost:4201")
 @RestController()
 public class TicketController {
 
@@ -65,42 +65,8 @@ public class TicketController {
     }
 
 
-    @PatchMapping(path="/tickets/status/resolved",  consumes={"application/json"})
-    public ResponseEntity<HashMap<String, Object>> changeStatustoResolved(@RequestBody Ticket ticket){
-        System.out.println("Ticket: " + ticket);
-        Ticket oldTicket = ticketRepository.findById(ticket.getId()).get();
-        System.out.println("Old Ticket : " + oldTicket);
-        //oldTicket.setStatus(ticket.getStatus());
-        oldTicket.setStatus("closed");
-        ticketRepository.save(oldTicket);
-        System.out.println("old ticket after update: " + oldTicket);
 
-        responseObject = new HashMap<>();
-        responseObject.put("result", oldTicket);
-        responseObject.put("errors", false);
-        responseObject.put("message", "Ticket resolved");
 
-        return new ResponseEntity<>(responseObject, HttpStatus.OK);
 
-    }
-
-    @PatchMapping(path="/tickets/status/callbackmail",  consumes={"application/json"})
-    public ResponseEntity<HashMap<String, Object>> changeStatustoCallBackMail(@RequestBody Ticket ticket){
-        System.out.println("Ticket: " + ticket);
-        Ticket oldTicket = ticketRepository.findById(ticket.getId()).get();
-        System.out.println("Old Ticket : " + oldTicket);
-        //oldTicket.setStatus(ticket.getStatus());
-        oldTicket.setStatus("callbackmail");
-        ticketRepository.save(oldTicket);
-        System.out.println("old ticket after update: " + oldTicket);
-
-        responseObject = new HashMap<>();
-        responseObject.put("result", oldTicket);
-        responseObject.put("errors", false);
-        responseObject.put("message", "Ticket goes for callback mail");
-
-        return new ResponseEntity<>(responseObject, HttpStatus.OK);
-
-    }
 
 }

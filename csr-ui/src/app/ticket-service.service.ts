@@ -16,7 +16,7 @@ export class TicketServiceService {
 
   getProduct():Observable<any>
   {
-    return this.http.get<any>("http://localhost:8182/tickets/open");
+    return this.http.get<any>("http://localhost:8080/tickets/open");
   }
   // postData(data)
   // {
@@ -33,7 +33,7 @@ export class TicketServiceService {
       //IMPORTANT
      
   }
-    return this.http.post<any>("http://localhost:8182/callbackmail",mail).subscribe(res => {
+    return this.http.post<any>("http://localhost:8080/callbackmail",mail).subscribe(res => {
       console.log(res);
     });    
   }
@@ -48,7 +48,7 @@ export class TicketServiceService {
   
   setStatusforMail(ticket: Object)
   {
-    return this.http.patch<any>("http://localhost:8182/tickets/status/callbackmail",ticket).subscribe(res => {
+    return this.http.patch<any>("http://localhost:8080/tickets/status/callbackmail",ticket).subscribe(res => {
       console.log(res);
     });   
   }
@@ -56,7 +56,7 @@ export class TicketServiceService {
 
   setStatusforResolve(ticket: Object)
   {
-    return this.http.patch<any>("http://localhost:8182/tickets/status/resolved",ticket).subscribe(res => {
+    return this.http.patch<any>("http://localhost:8080/tickets/status/resolved",ticket).subscribe(res => {
       console.log(res);
     });   
   }

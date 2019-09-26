@@ -1,0 +1,24 @@
+{
+    "result": [
+        {
+            "name": "add",
+            "status": "active"
+        },
+        {
+            "name": "divide",
+            "status": "inactive"
+        },
+        {
+            "name": "apply",
+            "status": "active"
+        },
+        {
+            "name": "multiply",
+            "status": "inactive"
+        },
+        {
+            "name": "done",
+            "status": "active"
+        }
+    ]
+}
