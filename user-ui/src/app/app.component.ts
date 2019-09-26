@@ -35,9 +35,9 @@ export class AppComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      this.description = result.description;
 
-      if (this.description !== '') {
+      if (result !== undefined) {
+        this.description = result.description;
         console.log(this.description);
         this.save(this.description);
       }
@@ -52,6 +52,7 @@ export class AppComponent implements OnInit {
   public save(desc: string) {
     // return this.http.post<Observable>(this.complaintUrl, description);
     // console.log("save");
+
       this.http.post<any>(this.complaintUrl, desc).subscribe(result => {
         console.log(result);
       });

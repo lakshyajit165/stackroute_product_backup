@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 
-@CrossOrigin(origins = { "http://localhost:4200", "http:localhost:4201" })
-@RestController()
+
+@RestController
+@CrossOrigin
 public class TicketController {
 
 

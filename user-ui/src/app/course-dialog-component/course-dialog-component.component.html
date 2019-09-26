@@ -1,6 +1,6 @@
 <h2 mat-dailog-title>
     Complaint Form
-    <mat-icon mat-dialog-close >clear</mat-icon>
+    <mat-icon (click)="dialogClose()" >clear</mat-icon>
 </h2>
     <div class="display">
     <div mat-form-field >
@@ -12,5 +12,5 @@
     </div>
     </div>
     <div mat-dailog-actions>
-        <button mat-button color="primary" [mat-dialog-close]="data" cdkFocusInitial (click)="">Submit</button>
+        <button mat-button color="primary" [mat-dialog-close]="data" >Submit</button>
     </div>

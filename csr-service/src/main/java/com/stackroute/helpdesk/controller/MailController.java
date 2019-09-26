@@ -16,7 +16,7 @@ import java.util.Date;
 import java.util.HashMap;
 
 @RestController
-@CrossOrigin(origins = { "http://localhost:4200", "http:localhost:4201" })
+@CrossOrigin
 public class MailController {
 
     @Autowired
