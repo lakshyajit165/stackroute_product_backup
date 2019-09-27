@@ -135,4 +135,23 @@ public class MailController{
     }
 
 
+    @PostMapping(path="/tickets/status/response",  consumes={"application/json"})
+    public ResponseEntity<HashMap<String, Object>> sendResponse(@RequestBody String response,String email){
+
+        SimpleMailMessage simpleMailMessage=new SimpleMailMessage();
+        simpleMailMessage.setTo(email);
+        simpleMailMessage.setSubject("HelpDesk optimus callback mail");
+        simpleMailMessage.setText(response);
+        javaMailSender.send(simpleMailMessage);
+
+        responseObject = new HashMap<>();
+        responseObject.put("result", response);
+        responseObject.put("errors", false);
+        responseObject.put("message", "msg send");
+
+        return new ResponseEntity<>(responseObject, HttpStatus.OK);
+
+    }
+
+
 }
