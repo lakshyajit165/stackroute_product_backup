@@ -41,6 +41,7 @@ export class TicketDetailComponent implements OnInit {
 // }
 
 ngOnInit() {
+  this.ticketService.setStatusforEngage(this.msg);
   console.log("this is current state1");
  this.ticketService.getCommandName().subscribe(res =>{
     this.commands=res;
