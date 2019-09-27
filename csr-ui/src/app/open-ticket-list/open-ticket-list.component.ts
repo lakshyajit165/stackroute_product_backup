@@ -12,6 +12,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class OpenTicketListComponent implements OnInit {
 
   tickets: any;
+  tags: {};
+
+  ngOnInit() {
+
+  }
 
   constructor(
     private http: HttpClient,
@@ -21,7 +26,8 @@ export class OpenTicketListComponent implements OnInit {
   ) {
     this.ticketService.getProduct().subscribe(res => {
       this.tickets = res.result;
-      console.log(this.tickets);
+      console.log(typeof this.tickets);
+
     });
   }
 
@@ -33,9 +39,6 @@ export class OpenTicketListComponent implements OnInit {
   }
 
 
-  ngOnInit() {
-    
 
-  }
 
   }

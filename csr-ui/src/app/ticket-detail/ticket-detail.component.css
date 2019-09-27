@@ -1,8 +1,8 @@
 .ticket
 {
-    padding-left: 5%;
-    padding-right: 5%;
+    padding: 20px 10px 20px 10px;
     border: 1px solid black;  
+
 }
 
 .button
@@ -30,3 +30,10 @@
 
   .h1 { display: inline; }
 .p { display: inline; }
+
+.my-class{
+ 
+    width: 100px! important;
+    min-width: unset! important;
+
+}
