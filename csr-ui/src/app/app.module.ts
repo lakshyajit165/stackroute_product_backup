@@ -19,6 +19,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatSelectModule} from '@angular/material/select';
 import { ReportUserComponent } from './report-user/report-user.component';
 import { MatIconModule, MatInputModule, MatFormFieldModule } from '@angular/material';
+import {MatChipsModule} from '@angular/material/chips';
 import {
   MatRippleModule
 } from '@angular/material';
@@ -60,7 +61,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     FormsModule,
     BrowserModule,
     ReactiveFormsModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatChipsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

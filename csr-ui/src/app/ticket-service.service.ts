@@ -66,6 +66,15 @@ export class TicketServiceService {
     });   
   }
 
+
+
+  setStatusforEngage(ticket: Object)
+  {
+    return this.http.patch<any>("http://localhost:8080/tickets/status/engage",ticket).subscribe(res => {
+      console.log(res);
+    });   
+  }
+
   }
 
 

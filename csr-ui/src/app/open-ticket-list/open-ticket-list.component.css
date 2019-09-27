@@ -1,15 +1,31 @@
 .middle
 {
-    text-align: center;
+   text-align: center;
 }
-
 .listitem
 {
-    border: 1px solid black;
+   border: 1px solid black;
 }
-
 .listitem{
-   
-    width: 70%;
-  
+   width: 70%;
+}
+.size
+{
+   width: 130px;
+}
+.matdivide
+{
+   padding-bottom: 10px;
+}
+.matlist
+{
+   padding-left: 5%;
+   padding-right: 5%;
+}
+.timeC
+{
+   padding-right: 40px;
+}
+sameline{
+   display: inline-block;
 }

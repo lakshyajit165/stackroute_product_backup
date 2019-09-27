@@ -78,6 +78,28 @@ public class TicketController {
 
     }
 
+    @PatchMapping(path="/tickets/status/engage")
+    public ResponseEntity<HashMap<String, Object>> changeStatustoCallBackMail(@RequestBody TicketStructure ticketStructure){
+
+        // System.out.println("Ticket: " + ticketStructure);
+
+        TicketStructure oldTicket = ticketInterface.getTicketById(ticketStructure.getId()).get();
+
+        // System.out.println("Old Ticket : " + oldTicket);
+        // oldTicket.setStatus(ticket.getStatus());
+        oldTicket.setStatus("engaged");
+        ticketInterface.changeStatusToEngaged(oldTicket);
+
+        // System.out.println("old ticket after update: " + oldTicket);
+
+        responseObject = new HashMap<>();
+        responseObject.put("result", oldTicket);
+        responseObject.put("errors", false);
+        responseObject.put("message", "Ticket goes to csr or bot for further handling");
+
+        return new ResponseEntity<>(responseObject, HttpStatus.OK);
+    }
+
 
 
 
