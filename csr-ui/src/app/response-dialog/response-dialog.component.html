@@ -1,9 +1,8 @@
 <h3 mat-dialog-title>{{data.msg.description}}</h3>
 <mat-dialog-content>
 {{response}}
-</mat-dialog-content> 
-
+</mat-dialog-content>
 <mat-dialog-actions>
- <button mat-button (click)="replyViaMail()">Reply via Mail</button>
-  <button mat-button mat-dialog-close (click)="replyViaChat()">Reply via Chat</button>
-</mat-dialog-actions> 
+<button mat-button (click)="replyViaMail(data.mail)">Reply via Mail</button>
+ <button mat-button mat-dialog-close (click)="replyViaChat()">Reply via Chat</button>
+</mat-dialog-actions>

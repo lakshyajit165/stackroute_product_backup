@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TicketService implements TicketInterface{
@@ -32,4 +33,15 @@ public class TicketService implements TicketInterface{
 
         // return ticketRepository.getOpenTickets();
     }
+
+    @Override
+    public Optional<TicketStructure> getTicketById(String id){
+        return ticketRepository.findById(id);
+    }
+
+    @Override
+    public void saveTicketStatus(TicketStructure ticketStructure){
+        ticketRepository.save(ticketStructure);
+    }
+
 }

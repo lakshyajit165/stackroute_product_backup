@@ -85,14 +85,14 @@ ngOnInit() {
   }
 
   openDialogforResponse():void
-  {
-    console.log(this.usermail);
-   // this.dialog1.open(ResponseDialogComponent);
-   const dialogRef = this.dialog1.open(ResponseDialogComponent,
-    {
-      data: { mail: this.usermail, msg: this.msg}
-    });
-  }
+ {
+   console.log(this.usermail);
+  // this.dialog1.open(ResponseDialogComponent);
+  const dialogRef = this.dialog1.open(ResponseDialogComponent,
+   {
+     data: { mail: this.usermail, msg: this.msg}
+   });
+ }
 
   sendMail()
   {
