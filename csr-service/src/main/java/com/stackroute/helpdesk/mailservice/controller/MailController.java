@@ -1,6 +1,7 @@
 package com.stackroute.helpdesk.mailservice.controller;
 
 
+import com.stackroute.helpdesk.ticketservice.entity.Response;
 import com.stackroute.helpdesk.ticketservice.entity.TicketStructure;
 import com.stackroute.helpdesk.ticketservice.repository.TicketRepository;
 
@@ -132,6 +133,21 @@ public class MailController{
         return new ResponseEntity<>(responseObject, HttpStatus.OK);
 
 
+    }
+
+    @PostMapping(path="/tickets/status/response",  consumes={"application/json"})
+    public ResponseEntity<HashMap<String, Object>> sendResponse(@RequestBody Response response){
+        SimpleMailMessage simpleMailMessage=new SimpleMailMessage();
+        simpleMailMessage.setTo(response.getUsermail());
+        simpleMailMessage.setSubject("HelpDesk optimus response mail");
+        simpleMailMessage.setText("hello , this is your required response");
+        simpleMailMessage.setText(response.getResponse());
+        javaMailSender.send(simpleMailMessage);
+        responseObject = new HashMap<>();
+        responseObject.put("result", response);
+        responseObject.put("errors", false);
+        responseObject.put("message", "msg send");
+        return new ResponseEntity<>(responseObject, HttpStatus.OK);
     }
 
 
