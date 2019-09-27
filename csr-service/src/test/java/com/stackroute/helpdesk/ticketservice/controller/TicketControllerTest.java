@@ -1,23 +1,18 @@
-package com.stackroute.helpdesk.controller;
+package com.stackroute.helpdesk.ticketservice.controller;
 
 import java.util.*;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.stackroute.helpdesk.entity.Ticket;
-import com.stackroute.helpdesk.repository.TicketRepository;
-import com.stackroute.helpdesk.service.TicketInterface;
-import com.stackroute.helpdesk.service.TicketService;
+import com.stackroute.helpdesk.ticketservice.entity.TicketStructure;
+import com.stackroute.helpdesk.ticketservice.repository.TicketRepository;
+import com.stackroute.helpdesk.ticketservice.service.TicketInterface;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -26,13 +21,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.RequestBuilder;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import static org.mockito.Mockito.when;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -43,18 +34,19 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 public class TicketControllerTest {
 
-    Ticket mockTicket;
+
+    TicketStructure mockTicketStructure;
     @Autowired
     private MockMvc mockMvc;
-//
+
     @InjectMocks
     private TicketController ticketController;
 
-    private HashMap<String, Object> openTicketList;
-    private ResponseEntity<HashMap<String, Object>> response;
+    private List openTicketList;
+//    private ResponseEntity<HashMap<List, Object>> response;
 
-    @MockBean
-    private TicketRepository ticketRepository;
+//    @MockBean
+//    private TicketRepository ticketRepository;
 
     @MockBean
     private TicketInterface ticketInterface;
@@ -64,15 +56,14 @@ public class TicketControllerTest {
 
         MockitoAnnotations.initMocks(this);
 
-
     }
     //
     @Test
     public void getOpenTickets() throws Exception {
 
-        openTicketList = new HashMap<>();
+        openTicketList = new ArrayList<>();
 
-        mockTicket = new Ticket(
+        mockTicketStructure = new TicketStructure(
                 "Get order details",
                 "user1@gmail.com",
                 "open",
@@ -85,17 +76,13 @@ public class TicketControllerTest {
                 "bot",
                 Arrays.asList("receipt", "invoice"));
 
-        openTicketList.put("result", mockTicket);
-        openTicketList.put("errors", false);
-        openTicketList.put("message", "Success");
+          openTicketList.add(mockTicketStructure);
+//
 
-        response = new ResponseEntity<>(openTicketList, HttpStatus.OK);
-
-
-//        when(ticketController.getOpenTickets()).thenReturn(null);
+        when(ticketInterface.getOpenTickets()).thenReturn(openTicketList);
         mockMvc.perform(get("/tickets/open")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(jsonToString(mockTicket)))
+                .content(jsonToString(mockTicketStructure)))
                 .andExpect(status().isOk())
                 .andDo(print());
 
@@ -103,15 +90,15 @@ public class TicketControllerTest {
     }
 
     @Test
-    public void getAllTickets() throws Exception{
+    public void getAllTickets() throws Exception {
 
-        response = new ResponseEntity<HashMap<String, Object>>(openTicketList, HttpStatus.OK);
+//        response = new ResponseEntity<HashMap<String, Object>>(openTicketList, HttpStatus.OK);
 
 
-//        when(ticketController.getOpenTickets()).thenReturn(null);
+        when(ticketInterface.getTickets()).thenReturn(openTicketList);
         mockMvc.perform(get("/tickets")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(jsonToString(mockTicket)))
+                .content(jsonToString(mockTicketStructure)))
                 .andExpect(status().isOk())
                 .andDo(print());
     }

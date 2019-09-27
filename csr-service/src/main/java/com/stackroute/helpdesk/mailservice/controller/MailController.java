@@ -1,9 +1,10 @@
-package com.stackroute.helpdesk.controller;
+package com.stackroute.helpdesk.mailservice.controller;
 
 
-import com.stackroute.helpdesk.entity.Ticket;
-import com.stackroute.helpdesk.repository.TicketRepository;
-import com.sun.mail.iap.Response;
+import com.stackroute.helpdesk.ticketservice.entity.TicketStructure;
+import com.stackroute.helpdesk.ticketservice.repository.TicketRepository;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,13 +12,14 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.*;
 
+
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 
 @RestController
 @CrossOrigin
-public class MailController {
+public class MailController{
 
     @Autowired
     private JavaMailSender javaMailSender;
@@ -28,21 +30,21 @@ public class MailController {
 
     HashMap<String, Object> responseObject;
 
-    // Ticket could not be resolved by CSR, hence callback initiated
+    // TicketStructure could not be resolved by CSR, hence callback initiated
 
     @PatchMapping(path="/tickets/status/callbackmail",  consumes={"application/json"})
-    public ResponseEntity<HashMap<String, Object>> changeStatustoCallBackMail(@RequestBody Ticket ticket){
-        System.out.println("Ticket: " + ticket);
-        Ticket oldTicket = ticketRepository.findById(ticket.getId()).get();
+    public ResponseEntity<HashMap<String, Object>> changeStatustoCallBackMail(@RequestBody TicketStructure ticketStructure){
+        System.out.println("TicketStructure: " + ticketStructure);
+        TicketStructure oldTicketStructure = ticketRepository.findById(ticketStructure.getId()).get();
 
         // To get user email and send an email stating that a callback is initiated (CSR unable to resolve query)
-        String email = oldTicket.getUsermail();
+        String email = oldTicketStructure.getUsermail();
 
-        System.out.println("Old Ticket : " + oldTicket);
-        //oldTicket.setStatus(ticket.getStatus());
-        oldTicket.setStatus("callbackmail");
-        ticketRepository.save(oldTicket);
-        System.out.println("old ticket after update: " + oldTicket);
+        System.out.println("Old TicketStructure : " + oldTicketStructure);
+        //oldTicketStructure.setStatus(ticketStructure.getStatus());
+        oldTicketStructure.setStatus("callbackmail");
+        ticketRepository.save(oldTicketStructure);
+        System.out.println("old ticketStructure after update: " + oldTicketStructure);
 
         // Sending mail to the user
         SimpleMailMessage simpleMailMessage=new SimpleMailMessage();
@@ -52,7 +54,7 @@ public class MailController {
         javaMailSender.send(simpleMailMessage);
 
         responseObject = new HashMap<>();
-        responseObject.put("result", oldTicket);
+        responseObject.put("result", oldTicketStructure);
         responseObject.put("errors", false);
         responseObject.put("message", "Callback initiated!");
 
@@ -60,33 +62,33 @@ public class MailController {
 
     }
 
-    // Ticket is resolved
+    // TicketStructure is resolved
 
     @PatchMapping(path="/tickets/status/resolved",  consumes={"application/json"})
-    public ResponseEntity<HashMap<String, Object>> changeStatustoResolved(@RequestBody Ticket ticket){
-        System.out.println("Ticket: " + ticket);
-        Ticket oldTicket = ticketRepository.findById(ticket.getId()).get();
+    public ResponseEntity<HashMap<String, Object>> changeStatustoResolved(@RequestBody TicketStructure ticketStructure){
+        System.out.println("TicketStructure: " + ticketStructure);
+        TicketStructure oldTicketStructure = ticketRepository.findById(ticketStructure.getId()).get();
 
         // Get user email
-        String email = oldTicket.getUsermail();
+        String email = oldTicketStructure.getUsermail();
 
-        System.out.println("Old Ticket : " + oldTicket);
-        //oldTicket.setStatus(ticket.getStatus());
-        oldTicket.setStatus("closed");
-        ticketRepository.save(oldTicket);
-        System.out.println("old ticket after update: " + oldTicket);
+        System.out.println("Old TicketStructure : " + oldTicketStructure);
+        //oldTicketStructure.setStatus(ticketStructure.getStatus());
+        oldTicketStructure.setStatus("closed");
+        ticketRepository.save(oldTicketStructure);
+        System.out.println("old ticketStructure after update: " + oldTicketStructure);
 
-        // Sending mail to the user (Stating that the ticket is resolved)
+        // Sending mail to the user (Stating that the ticketStructure is resolved)
         SimpleMailMessage simpleMailMessage=new SimpleMailMessage();
         simpleMailMessage.setTo(email);
-        simpleMailMessage.setSubject("HelpDesk optimus Ticket Resolved");
-        simpleMailMessage.setText("Your ticket with id "+oldTicket.getId()+" has been resolved!");
+        simpleMailMessage.setSubject("HelpDesk optimus TicketStructure Resolved");
+        simpleMailMessage.setText("Your ticketStructure with id "+ oldTicketStructure.getId()+" has been resolved!");
         javaMailSender.send(simpleMailMessage);
 
         responseObject = new HashMap<>();
-        responseObject.put("result", oldTicket);
+        responseObject.put("result", oldTicketStructure);
         responseObject.put("errors", false);
-        responseObject.put("message", "Ticket resolved!");
+        responseObject.put("message", "TicketStructure resolved!");
 
         return new ResponseEntity<>(responseObject, HttpStatus.OK);
 
@@ -98,7 +100,7 @@ public class MailController {
     @PostMapping(path="/tickets/complaint")
     public ResponseEntity<HashMap<String, Object>> addComplaint(@RequestBody String description){
 
-        Ticket complaint = new Ticket();
+        TicketStructure complaint = new TicketStructure();
         complaint.setDescription(description);
         complaint.setUsermail("lakshyajit165@gmail.com");
         complaint.setStatus("open");
@@ -113,10 +115,19 @@ public class MailController {
 
         ticketRepository.save(complaint);
 
+
+        // Sending mail to the user (Stating that the complaint ticket is generated)
+        SimpleMailMessage simpleMailMessage=new SimpleMailMessage();
+        simpleMailMessage.setTo(complaint.getUsermail());
+        simpleMailMessage.setSubject("HelpDesk optimus complaint generated");
+        simpleMailMessage.setText("Your ticket with id "+complaint.getId()+" has been generated!. We will get back to you ASAP.");
+        javaMailSender.send(simpleMailMessage);
+
+
         responseObject = new HashMap<>();
         responseObject.put("result", complaint);
         responseObject.put("errors", false);
-        responseObject.put("message", "Ticket generated for complaint!");
+        responseObject.put("message", "TicketStructure generated for complaint!");
 
         return new ResponseEntity<>(responseObject, HttpStatus.OK);
 
