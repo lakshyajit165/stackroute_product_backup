@@ -19,6 +19,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatSelectModule} from '@angular/material/select';
 import { ReportUserComponent } from './report-user/report-user.component';
 import { MatIconModule, MatInputModule, MatFormFieldModule } from '@angular/material';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatSidenavModule} from '@angular/material/sidenav';
 import {
   MatRippleModule
 } from '@angular/material';
@@ -43,6 +45,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
   entryComponents: [ResponseDialogComponent,ReportUserComponent],
   
   imports: [
+    MatSidenavModule,
     MatDialogModule,
     MatInputModule,
     MatGridListModule,
@@ -60,7 +63,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     FormsModule,
     BrowserModule,
     ReactiveFormsModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatChipsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

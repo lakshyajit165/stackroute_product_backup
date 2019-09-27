@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { MatDialogConfig} from "@angular/material";
 import {ResponseDialogComponent} from "../response-dialog/response-dialog.component"
@@ -22,11 +22,12 @@ export class TicketDetailComponent implements OnInit {
   durationInSeconds = 5;
 
   id: string;
-  msg: Object;
-  usermail: string;
+  msg: Object;    //send this in dialog
+  usermail: string;      // //send this in dialog
    
   commands: any;
   commandName: string[]= [];
+
 
   // ngOnInit() {
   //   this.route.paramMap.pipe(map(paramMap => {
@@ -41,6 +42,7 @@ export class TicketDetailComponent implements OnInit {
 // }
 
 ngOnInit() {
+  this.ticketService.setStatusforEngage(this.msg);
   console.log("this is current state1");
  this.ticketService.getCommandName().subscribe(res =>{
     this.commands=res;
@@ -82,9 +84,14 @@ ngOnInit() {
    this.dialog.open(ReportUserComponent);
   }
 
-  openDialogforResponse()
+  openDialogforResponse():void
   {
-    this.dialog1.open(ResponseDialogComponent);
+    console.log(this.usermail);
+   // this.dialog1.open(ResponseDialogComponent);
+   const dialogRef = this.dialog1.open(ResponseDialogComponent,
+    {
+      data: { mail: this.usermail, msg: this.msg}
+    });
   }
 
   sendMail()

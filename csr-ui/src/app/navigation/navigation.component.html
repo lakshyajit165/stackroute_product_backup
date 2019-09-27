@@ -1,13 +1,52 @@
 
 <!-- nav bar -->
-<mat-toolbar color="primary" class="navy">
+<!-- <mat-toolbar color="primary" class="navy">
 
     <span>Customer Support</span>
 
-    <span class="example-fill-remaining-space"></span>
+    <span class="example-fill-remaining-space"></span> -->
      <!-- <a class="active" class="example-icon" [routerLink]="/home">Home</a> -->
-     <a class="active" class="example-icon" [routerLink]="['/home']">Home</a>
+     <!-- <a class="active" class="example-icon" [routerLink]="['/home']">Home</a>
      <a class="example-icon" routerLink="/list">Command List</a>
      <a class="example-icon" routerLink="/performance">Performance</a>
-     <a class="example-icon"routerLink="/login">Logout</a>
-  </mat-toolbar>
+     <a class="example-icon"routerLink="/login">Logout</a> -->
+  <!-- </mat-toolbar> -->
+
+
+<!-- 
+  <mat-toolbar class="navbar">
+        <div fxShow="true">
+          <button mat-icon-button (click)="sidenav.toggle()">
+            <mat-icon>menu</mat-icon>
+          </button>
+        </div>
+        <b><h1>Customer Support</h1></b>
+      
+    </mat-toolbar>
+    <mat-sidenav-container class="example-container">
+    
+            <mat-sidenav color="primary" #sidenav mode="side"  opened="true" fxHide.lt-md="true">
+                    <div fxLayout="column">
+                        <ul>
+                        <li>
+                        <a routerLink="/home" routerLinkActive="active"><mat-icon aria-hidden="false">home</mat-icon>Home</a>
+                    </li>
+                    <li>
+                        <a routerLink="/list" routerLinkActive="active"><mat-icon>list</mat-icon>Command List</a>
+                    </li>
+                    <li>
+                            <a routerLink="/performance" routerLinkActive="active"><mat-icon>trending_up</mat-icon>Performance</a>
+                        </li>
+                        <li>
+                                <a routerLink="/login" routerLinkActive="active"><mat-icon>trending_flat</mat-icon>Logout</a>
+                            </li>
+                </ul>
+                    </div>
+                  </mat-sidenav>
+                  <mat-sidenav-content fxFlexFill>
+                    <router-outlet></router-outlet>
+                  </mat-sidenav-content>
+                  
+              </mat-sidenav-container>
+              
+               -->

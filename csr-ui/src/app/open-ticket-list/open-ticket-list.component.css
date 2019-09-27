@@ -13,3 +13,29 @@
     width: 70%;
   
 }
+
+.size
+{
+    width: 130px;
+}
+
+.matdivide
+{
+    padding-bottom: 10px;
+}
+
+.matlist
+{
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.timeC
+{
+    padding-right: 40px; 
+}
+
+sameline{
+   
+    display: inline-block;
+}
