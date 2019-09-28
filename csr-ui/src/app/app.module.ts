@@ -28,6 +28,10 @@ import { NavigationComponent } from './navigation/navigation.component'
 import { HttpClientModule } from '@angular/common/http';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+
+import { ChartsModule } from 'ng2-charts';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,7 +68,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     BrowserModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
-    MatChipsModule
+    MatChipsModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
